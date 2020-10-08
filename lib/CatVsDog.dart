@@ -15,6 +15,11 @@ class _HomeState extends State<CatVSDog> {
   File _image;
   bool _loading = true;
   final picker = ImagePicker();
+  final _title = "Dog or Cat";
+  final _asset = 'assets/models/CatVsDog/cat.png';
+  final _description = "Identify Whether the given photo is dog or cat.";
+  final _model = "assets/models/CatVsDog/model_unquant.tflite";
+  final _labels = "assets/models/CatVsDog/labels.txt";
 
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
@@ -31,8 +36,8 @@ class _HomeState extends State<CatVSDog> {
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/model_unquant.tflite",
-      labels: "assets/labels.txt",
+      model: _model,
+      labels: _labels,
     );
   }
 
@@ -75,7 +80,7 @@ class _HomeState extends State<CatVSDog> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Dog or Cat",
+          _title,
           style: TextStyle(
             color: Colors.yellowAccent,
           ),
@@ -87,7 +92,7 @@ class _HomeState extends State<CatVSDog> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Identify Whether the given photo is dog or cat.',
+              _description,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.yellow, fontSize: 25),
             ),
@@ -97,39 +102,42 @@ class _HomeState extends State<CatVSDog> {
             Center(
               child: _loading
                   ? Container(
-                  child: Column(children: [
-                    Image.asset('assets/cat.png'),
-                  ]))
+                      child: Column(children: [
+                      Image.asset(_asset),
+                    ]))
                   : Container(
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.red[500],
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.red[500],
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            height: 200,
+                            child: Image.file(
+                              _image,
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(20))),
-                      height: 200,
-                      child: Image.file(_image,fit: BoxFit.fill,),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _outputs != null
-                        ? Padding(
-                      padding:
-                      const EdgeInsets.symmetric(vertical: 15),
-                      child: Text(
-                        '${_outputs[0]['label']}',
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 20),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          _outputs != null
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 15),
+                                  child: Text(
+                                    '${_outputs[0]['label']}',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                )
+                              : Container()
+                        ],
                       ),
-                    )
-                        : Container()
-                  ],
-                ),
-              ),
+                    ),
             ),
             Container(
               child: Column(
