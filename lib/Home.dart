@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:ultimate_machine_learning/CatVsDog.dart';
+import 'package:ultimate_machine_learning/category/ClassificationHome.dart';
+import 'package:ultimate_machine_learning/category/classification/CatVsDog.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CatVSDog()));
+                            builder: (context) => ClassificationHome()));
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(

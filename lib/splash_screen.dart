@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:ultimate_machine_learning/CatVsDog.dart';
+import 'package:ultimate_machine_learning/category/classification/CatVsDog.dart';
 import 'package:ultimate_machine_learning/Home.dart';
 
 class SplashDisplay extends StatefulWidget {
