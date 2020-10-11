@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ultimate_machine_learning/category/classification/CatVsDog.dart';
 import 'package:ultimate_machine_learning/category/classification/FlowerRecognizer.dart';
+import 'package:ultimate_machine_learning/category/classification/FruitRecognizer.dart';
 
 class ClassificationHome extends StatefulWidget {
   @override
@@ -19,6 +20,10 @@ class _ClassificationHomeState extends State<ClassificationHome> {
   getFlowerPath() {
     return Navigator.push(
         context, MaterialPageRoute(builder: (context) => FlowerRecognizer()));
+  }
+  getFruitPath() {
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => FruitRecognizer()));
   }
 
   @override
@@ -48,6 +53,8 @@ class _ClassificationHomeState extends State<ClassificationHome> {
           children: [
             FancyCard(_cat, 'Cat Vs Dog', getCatRoute),
             FancyCard(_flower, 'Flower Recognizer', getFlowerPath),
+            FancyCard(_flower, 'Fruit Recognizer', getFruitPath),
+
           ],
         ));
   }
