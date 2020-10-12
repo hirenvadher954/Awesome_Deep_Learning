@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:ultimate_machine_learning/category/ClassificationHome.dart';
-import 'package:ultimate_machine_learning/category/classification/CatVsDog.dart';
+import 'package:ultimate_machine_learning/category/classification/ClassificationHome.dart';
+import 'package:ultimate_machine_learning/category/nlp/NlpHome.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,10 +9,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> mlType = ['Classification', 'NLP'];
+  List<String> navigate = ['ClassificationHome', 'NLPHome'];
+
   @override
   Widget build(BuildContext context) {
-    final title = 'Grid List';
-
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0,
         shrinkWrap: true,
-        children: List.generate(20, (index) {
+        children: List.generate(2, (index) {
           return Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ClassificationHome()));
+                            builder: (context) => getCurrentPath(index)));
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(
@@ -73,21 +74,23 @@ class _HomeState extends State<Home> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.spaceAround,
                                       children: <Widget>[
                                         Row(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: <Widget>[
                                             Flexible(
                                                 child: Center(
                                                     child: Image.asset(
-                                                        'assets/category/0.png')))
+                                                        'assets/category/$index.png')))
                                           ],
                                         ),
-                                        Flexible(child: Text("Hi BYE")),
+                                        Flexible(
+                                          child: Text('${mlType[index]}'),
+                                        )
                                       ],
                                     ),
                                   )
@@ -102,5 +105,16 @@ class _HomeState extends State<Home> {
         }),
       ),
     );
+  }
+
+  getCurrentPath(index) {
+    if (index == 0) {
+      return ClassificationHome();
+    }
+    if (index == 1) {
+      return NLPHome();
+    } else {
+      return ClassificationHome();
+    }
   }
 }

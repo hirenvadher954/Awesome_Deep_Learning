@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_machine_learning/category/classification/CatVsDog.dart';
-import 'package:ultimate_machine_learning/category/classification/FlowerRecognizer.dart';
-import 'package:ultimate_machine_learning/category/classification/FruitRecognizer.dart';
 
-class ClassificationHome extends StatefulWidget {
+import 'package:ultimate_machine_learning/category/nlp/SentimentalAnalysis.dart';
+
+class NLPHome extends StatefulWidget {
   @override
-  _ClassificationHomeState createState() => _ClassificationHomeState();
+  _NLPHomeState createState() => _NLPHomeState();
 }
 
-class _ClassificationHomeState extends State<ClassificationHome> {
-  final _cat = 'assets/models/CatVsDog/cat.png';
-  final _flower = 'assets/models/FlowerRecognizer/flower.png';
+class _NLPHomeState extends State<NLPHome> {
+  final _theater = 'assets/models/NLP/theater.png';
 
-  getCatRoute() {
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CatVSDog()));
-  }
-
-  getFlowerPath() {
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => FlowerRecognizer()));
-  }
-  getFruitPath() {
-    return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => FruitRecognizer()));
+  getSentimentalRoute() {
+    return Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SentimentalAnalysis()));
   }
 
   @override
@@ -51,9 +40,7 @@ class _ClassificationHomeState extends State<ClassificationHome> {
         ),
         body: Column(
           children: [
-            FancyCard(_cat, 'Cat Vs Dog', getCatRoute),
-            FancyCard(_flower, 'Flower Recognizer', getFlowerPath),
-            FancyCard(_flower, 'Fruit Recognizer', getFruitPath),
+            FancyCard(_theater, 'Sentimental Analysis', getSentimentalRoute),
 
           ],
         ));

@@ -24,6 +24,7 @@ dependencies:
   image_picker: ^0.6.7+11
   splashscreen:
   tflite: ^1.1.1
+  http:
   flutter:
     sdk: flutter
 
@@ -53,7 +54,7 @@ flutter:
     - assets/category/
     - assets/models/CatVsDog/
     - assets/models/FlowerRecognizer/
-    - assets/models/FruitRecognizer/
+    - assets/models/NLP/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
